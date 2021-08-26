@@ -6,7 +6,6 @@ const dateEl = $('.date');
 
 // const currentWeatherItemsEl = $('.others');
 
-
 const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
@@ -119,7 +118,6 @@ inputCity.addEventListener('click', () => {
     $('.buffer-zone').style.display = 'none'
 })
 
-// In html ?
 function showWeatherData(data, currentData) {
     $('.future-forecast').style.display = 'flex'
 
