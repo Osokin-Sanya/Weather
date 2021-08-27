@@ -1,0 +1,369 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+
+body {
+    background: url('https://storge.pic2.me/c/1360x800/550/5416b7af2bed9.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.container {
+    padding: 20px 250px;
+    color: #fff;
+}
+
+.current-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.date-container {
+    font-weight: 100;
+}
+
+.date-container .time {
+    font-size: 70px;
+}
+
+.date-container .date {
+    font-size: 30px;
+}
+
+.place-container {
+    text-align: end;
+}
+
+.current-info .others {
+    display: flex;
+    flex-direction: column;
+    background: rgba(24, 24, 27, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border: 1px solid #eee;
+}
+
+.current-info .others .weather-item {
+    display: flex;
+    justify-content: space-between;
+    width: 105%;
+    line-height: 130%;
+}
+
+.future-forecast {
+    background: rgba(24, 24, 27, 0.8);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    color: white;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow-y: hidden;
+    display: none;
+}
+
+.future-forecast .today {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 15px;
+    padding-right: 40px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2)
+}
+
+.future-forecast .today .day {
+    padding: 5px 15px;
+    background: #3c3c44;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.future-forecast .today .temp {
+    font-size: 17px;
+}
+
+.future-forecast .weather-forecast {
+    display: flex;
+}
+
+.weather-forecast .weather-forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 11px 10px 0px 10px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    width: 134px;
+}
+
+.weather-forecast .weather-forecast-item .day {
+    padding: 5px 8px;
+    background: #3C3C44;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.weather-forecast .weather-forecast-item .temp {
+    font-weight: 100;
+    font-size: 12px;
+}
+
+input {
+    background: rgba(55, 55, 128, 0.6);
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    color: wheat;
+}
+
+button {
+    background: rgba(55, 55, 128, 0.6);
+    padding: 7px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    color: wheat;
+}
+
+button:hover {
+    background: rgba(55, 55, 128, 0.9);
+    cursor: pointer;
+}
+
+.zone {
+    display: flex;
+    justify-content: center;
+}
+
+.buffer-zone {
+    color: white;
+    background: rgba(24, 24, 27, 0.8);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    display: none;
+    height: 251px
+}
+
+.date {
+    display: flex;
+}
+
+.parameters {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    height: 235px;
+}
+
+#pidor {
+    margin-top: 40px;
+}
+
+.parameters-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.parameters-text2 {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    width: min-content;
+    height: -webkit-fill-available;
+    margin: 0 auto;
+}
+
+.date-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 46px;
+    font-weight: 700;
+    font-size: 20px;
+    border: 1px solid;
+    padding: 6%
+}
+
+.wrapper-zone {
+    display: flex;
+    justify-content: center;
+    background: rgba(24, 24, 27, 0.8);
+    width: 2000px;
+    height: 234px;
+}
+
+.img {
+    margin-top: -18px;
+    margin-bottom: -14px;
+}
+
+.parameters-text1 {
+    margin-top: 20px;
+}
+
+.other {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-wrapper {
+    width: 100%;
+    background: rgba(24, 24, 27, 0.7);
+    display: flex;
+    justify-content: center;
+    display: none;
+    height: 250.5px;
+}
+
+.current-item {
+    color: white;
+}
+
+.current-temp {
+    font-size: 90px;
+    text-align: center;
+    margin: 17px 0;
+}
+
+.description {
+    text-align: center;
+    font-size: 41px;
+}
+
+.current-weather {
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    margin: 16px 0 14px 0;
+}
+
+.autocomplete {
+    position: relative;
+    display: inline-block;
+}
+
+.autocomplete-items {
+    position: absolute;
+    z-index: 99;
+    overflow-y: scroll;
+    height: 310px;
+}
+
+.autocomplete-items::-webkit-scrollbar {
+    width: 0;
+}
+
+.autocomplete-items div {
+    margin-top: 4px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgba(24, 24, 27);
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+}
+
+.autocomplete-items div:hover {
+    background-color: rgba(4, 50, 255, 0.4);
+}
+
+.myInput[type=text] {
+    background-color: #f1f1f1;
+    width: 100%;
+}
+
+.myInput[type=submit] {
+    background-color: DodgerBlue;
+    color: #fff;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    /* Light grey */
+    border-top: 5px solid #3498db;
+    border-bottom: 5px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.parameters-wraper {
+    display: flex;
+    width: 79%;
+    justify-content: space-between;
+}
+
+.autocomplete-items .autocomplete-active {
+    background: brown;
+    /* important */
+}
+
+.body-city-17 {
+    background: no-repeat url('https://genapilot.ru/wp-content/uploads/2020/04/novyj-mod-dlja-half-life-alyx-perenosit-gorod-city-17-na-igrovoj-dvizhok-source.jpg')
+}
+
+.input-city-17,
+.button-city-17 {
+    background: rgb(97 97 121 / 60%);
+}
+
+.input-city-17:hover,
+.button-city-17:hover {
+    background: rgb(97 97 121 / 100%);
+}
+
+.current-wrapper-city-17 {
+    background: rgb(97 97 121 / 0%);
+}
+
+.body-San-Andreas {
+    background: no-repeat url('https://ovicio.com.br/wp-content/uploads/2021/05/20210502-sanandreas.jpg')
+}
+
+.input-San-Andreas,
+.button-San-Andreas {
+    background: rgb(149 207 142 / 50%);
+}
+
+.input-San-Andreas:hover,
+.button-San-Andreas:hover {
+    background: rgb(149 207 142 / 80%);
+}
+
+.body-pripyat {
+    background: no-repeat url('https://vgtimes.ru/uploads/posts/2020-07/1595525519_01.jpg');
+}
+
+.input-pripyat,
+.button-pripyat {
+    background: rgb(97 97 121 / 60%);
+}
+
+.input-pripyat:hover,
+.button-pripyat:hover {
+    background: rgb(97 97 121 / 100%);
+}

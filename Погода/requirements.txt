@@ -1,0 +1,57 @@
+1. Один инпут для ввода города, кнопка ОК для поиска города и взятия его нормального города для твоего погодного апи
+
+(debounce or throttle )
+
+Example: 
+
+input value: 
+// вводишь название города кирилицей и ищешь название города на латинице
+https://openweathermap.org/data/2.5/find?callback=jQuery19104461044894682864_1628287064993&q=%D0%90%D0%BF%D0%BE%D1%81%D1%82%D0%BE%D0%BB%D0%BE%D0%B2%D0%BE&type=like&sort=population&cnt=30&appid=439d4b804bc8187953eb36d2a8c26a02&_=1628287064998
+
+output: jQuery19104461044894682864_1628287064993({"message":"accurate","cod":"200","count":1,"list":[{"id":713245,"name":"Apostolove","coord":{"lat":47.66,"lon":33.7137},"main":{"temp":292.35,"feels_like":292.08,"temp_min":292.35,"temp_max":292.35,"pressure":1003,"humidity":67,"sea_level":1003,"grnd_level":993},"dt":1628287745,"wind":{"speed":5.74,"deg":341},"sys":{"country":"UA"},"rain":null,"snow":null,"clouds":{"all":33},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03n"}]}]})
+
+=> Apostolove // use this value for find actual weather
+
+Выводить json в textarea
+
+++++++++++++++++++++++++++++++++++++
+++++++++++++ 10 АВГУСТА ++++++++++++
+++++++++++++++++++++++++++++++++++++
+
+2. Base UI
+
+погода на 4 дня (по нажатию на конкретный день выбор погоды для этого дня)
+или
+погода на день (температура)
+
+++++++++++++++++++++++++++++++++++++
+++++++++++++ 20 АВГУСТА ++++++++++++
+++++++++++++++++++++++++++++++++++++
+
+3. Картиночки (динамическое добавление)
+
+дождь/ясно/ветренно/хмуро
+
+4. ? кеш (localStorage) ?
+ - недавно использованные города сохраняются и лоадятся в следующем запуске
+
+5. Perfect UI / for mobile
+
+6. Use location object https://developer.mozilla.org/ru/docs/Web/API/Location
+
+7. Publish
+
+возможно heroku / firebase / etc.
+
+8. Write/investigate manifest for this app 
+
+PWA - Progressive Web Application
+
+Будильник (Идея Санька)
+
+Либо при резком изменении погоды тоже дропать прогнооз (через час дождь/метель и т.д)
+
+
+
+
+

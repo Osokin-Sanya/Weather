@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOBA Fetch</title>
+    <link rel="stylesheet" href="styleBold.css">
+
+
+
+    <script defer src="weatherBold.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="current-info">
+            <div class="date-container">
+                <div class="time">
+                    12:30
+                </div>
+                <div class="date">
+                    Monday, 25 May
+                </div>
+                <div class="citi">
+                    <input type="text" value="Каменское" id="myInput">
+                    <button>OK</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="zone">
+        <div class="buffer-zone">
+            <div class="weather-container">
+                <div class="date">
+                    <div class="date-item">
+                        <p></p>
+                    </div>
+                </div>
+
+                <div class="parameters">
+                    <div class="parameters-item-text">
+                        <div class="date-wrapper">
+                            <p id="date-bleyt">Дата</p>
+                        </div>
+
+                        <p id='pidor'>События</p>
+                        <p>Температура</p>
+                        <p>Тем. по ощущению</p>
+                        <p>Давление</p>
+                        <p>Влажность</p>
+                        <p>Скорость ветра</p>
+                    </div>
+
+                    <div class="parameters-wraper">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="current-wrapper">
+            <div class="current-item">
+                <div class="current-temp"></div>
+                <div class="description"></div>
+                <div class="current-weather">
+                    <div class="humidity">
+                        <p>Влажность</p>
+                        <div class="humidity-item"></div>
+                    </div>
+                    <div class="wind">
+                        <p>Ветер</p>
+                        <div class="wind-item"></div>
+                    </div>
+                    <div class="pressure">
+                        <p>Давление</p>
+                        <div class="pressure-item"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="future-forecast">
+        <div class="today">
+            <div class="other">Такого города не существует </div>
+        </div>
+        <div class="weather-forecast">
+        </div>
+    </div>
+
+</body>
+
+</html>

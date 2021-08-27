@@ -1,0 +1,164 @@
+body {
+    background-color: aqua;
+}
+
+.container__all {
+    margin: 0 auto;
+    width: 500px;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.container1 {
+    margin: 0 auto;
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(102, 231, 177);
+}
+
+td {
+    width: 50px;
+    height: 50px;
+    border: 1px solid black;
+}
+
+.modal__Task {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    margin-left: 150px;
+    margin-top: 21px;
+}
+
+.modal__TaskRes {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    margin-left: 150px;
+    margin-top: 21px;
+}
+
+.button__All {
+    position: absolute;
+    margin: 234px 278px;
+    display: flex;
+}
+
+.button__AllRes {
+    position: absolute;
+    margin: 234px 278px;
+    display: flex;
+}
+
+textarea {
+    resize: none;
+    height: 185px;
+    width: 300px;
+}
+
+.offTask {
+    display: none;
+}
+
+.wrapper__Btn {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    background-color: brown;
+}
+
+.wrapper__Task {
+    overflow-y: scroll;
+    width: 600px;
+    height: 200px;
+    padding: 5px;
+    border: solid 1px black;
+}
+
+.dataTask {
+    overflow-y: scroll;
+    width: 600px;
+    height: 200px;
+    padding: 5px;
+    border: solid 1px black;
+}
+
+.dataTask::-webkit-scrollbar {
+    width: 0;
+}
+
+.wrapper__Task::-webkit-scrollbar {
+    width: 0;
+}
+
+.wrapper__Tasks {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: -3% 1%;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.wrapperdata {
+    display: flex;
+    align-items: center;
+    margin: -3% 1%;
+}
+
+.showAll2 {
+    position: absolute;
+    width: 611px;
+    height: 445px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.showAll {
+    margin-top: inherit;
+    border: solid 1px black;
+    width: 350px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(236, 164, 236);
+}
+
+.modalSpanWrapper {
+    position: absolute;
+    width: 611px;
+    height: 445px;
+    display: flex;
+}
+
+.removedata {
+    margin-left: auto;
+}
+
+.showBtn {
+    margin-top: auto;
+}
+
+.wrapperShowThemText div:first-child {
+    text-align: center;
+    margin: 6px 0px;
+    font-size: bold;
+    font-weight: 600;
+}
+
+.wrapperShowThemText div:last-child {
+    margin: 9px 8px;
+    word-break: break-all;
+}
+
+.placeTheme::placeholder {
+    text-align: center;
+}
