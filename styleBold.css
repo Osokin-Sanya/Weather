@@ -321,3 +321,49 @@ button:hover {
     background: brown;
     /* important */
 }
+
+.body-city-17 {
+    background: no-repeat url('https://genapilot.ru/wp-content/uploads/2020/04/novyj-mod-dlja-half-life-alyx-perenosit-gorod-city-17-na-igrovoj-dvizhok-source.jpg')
+}
+
+.input-city-17,
+.button-city-17 {
+    background: rgb(97 97 121 / 60%);
+}
+
+.input-city-17:hover,
+.button-city-17:hover {
+    background: rgb(97 97 121 / 100%);
+}
+
+.current-wrapper-city-17 {
+    background: rgb(97 97 121 / 0%);
+}
+
+.body-San-Andreas {
+    background: no-repeat url('https://ovicio.com.br/wp-content/uploads/2021/05/20210502-sanandreas.jpg')
+}
+
+.input-San-Andreas,
+.button-San-Andreas {
+    background: rgb(149 207 142 / 50%);
+}
+
+.input-San-Andreas:hover,
+.button-San-Andreas:hover {
+    background: rgb(149 207 142 / 80%);
+}
+
+.body-pripyat {
+    background: no-repeat url('https://vgtimes.ru/uploads/posts/2020-07/1595525519_01.jpg');
+}
+
+.input-pripyat,
+.button-pripyat {
+    background: rgb(97 97 121 / 60%);
+}
+
+.input-pripyat:hover,
+.button-pripyat:hover {
+    background: rgb(97 97 121 / 100%);
+}

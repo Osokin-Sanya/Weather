@@ -4,7 +4,16 @@ const $$ = _ => document.querySelectorAll(_);
 const timeEl = $('.time');
 const dateEl = $('.date');
 
-// const currentWeatherItemsEl = $('.others');
+const inputCity = $('input')
+inputCity.addEventListener('click', () => {
+    $('.buffer-zone').style.display = 'none'
+})
+
+const searchCityBtn = $('button')
+const cityArr = [];
+const apiKey = 'a174f834c69eee3b72537c60e7312512';
+const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
+const weatherForecast = $('.weather-forecast')
 
 const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
@@ -23,28 +32,9 @@ setInterval(() => {
 }, 1000);
 
 
-
-// коoрдинаты
-
-// function success(cor) {
-//     var crd = cor.coords;
-//     console.log(`Широта: ${crd.latitude}`);
-//     console.log(`Долгота: ${crd.longitude}`);
-// };
-// navigator.geolocation.getCurrentPosition(success);
-
-
-const inputCity = $('input')
-const searchCity = $('button')
-const cityArr = [];
-const apiKey = 'a174f834c69eee3b72537c60e7312512';
-const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
-const weatherForecast = $('.weather-forecast')
-
 function weatherNow(data) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)
         .then(res => res.json()).then(currentData => {
-            console.log(currentData)
             showWeatherData(data, currentData);
             currentWeather(data, currentData)
         })
@@ -54,41 +44,22 @@ function weatherNow(data) {
                 $('.today').innerHTML = `Такого города не существует`
                 if (inputCity.value == 'City-17') {
                     $('.today').innerHTML = `Добро пожаловать Доктор Фримен`
-                    $('body').style.background = ` no-repeat url('https://genapilot.ru/wp-content/uploads/2020/04/novyj-mod-dlja-half-life-alyx-perenosit-gorod-city-17-na-igrovoj-dvizhok-source.jpg')`
-                    $('input').style.background = 'rgb(97 97 121 / 60%)'
-                    $('button').style.background = 'rgb(97 97 121 / 60%)'
-                    $('.current-wrapper').style.background = 'rgb(97 97 121 / 0%)'
-
-                    $('button').onmouseenter = function() {
-                        this.style.background = 'rgb(97 97 121 / 100%)';
-                    }
-                    $('button').onmouseleave = function() {
-                        this.style.background = 'rgb(97 97 121 / 60%)';
-                    }
+                    $('body').className = 'body-city-17'
+                    $('input').className = 'input-city-17'
+                    $('button').className = 'button-city-17'
                 }
                 if (inputCity.value == 'San-Andreas') {
                     $('.today').innerHTML = `Ah, shit, here we go again`
-                    $('body').style.background = ` no-repeat url('https://ovicio.com.br/wp-content/uploads/2021/05/20210502-sanandreas.jpg')`
-                    $('input').style.background = 'rgb(149 207 142 / 50%)'
-                    $('button').style.background = 'rgb(149 207 142 / 50%)'
+                    $('body').className = 'body-San-Andreas'
+                    $('input').className = 'input-San-Andreas'
+                    $('button').className = 'button-San-Andreas'
 
-                    $('button').onmouseenter = function() {
-                        this.style.background = 'rgb(149 207 142 / 80%)';
-                    }
-                    $('button').onmouseleave = function() {
-                        this.style.background = 'rgb(149 207 142 / 50%)';
-                    }
                 }
                 if (inputCity.value == 'Припять') {
                     $('.today').innerHTML = `Ты бы еще консервных банок насобирал...`
-                    $('body').style.background = ` no-repeat url('https://vgtimes.ru/uploads/posts/2020-07/1595525519_01.jpg')`
-                    $('body').style.backgroundSize = 'cover'
-                }
-
-                if (inputCity.value == 'Абобусград') {
-                    $('.today').innerHTML = `Ебанный ты козел нахуй`
-                    $('body').style.background = ` no-repeat url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9QbS7U_eMIkA7toNdVhhmT2i9xf5Hz7VN6HmmY3y_p2Zdbk9bK6SSoQQlA5BstVux4MY&usqp=CAU')`
-                    $('body').style.backgroundSize = 'cover'
+                    $('body').className = 'body-pripyat'
+                    $('input').className = 'input-pripyat'
+                    $('button').className = 'button-pripyat'
                 }
             }
         })
@@ -97,30 +68,22 @@ function weatherNow(data) {
 function getWeatherData() {
     $('.buffer-zone').style.display = 'none'
     $('.current-wrapper').style.display = 'none'
-    weatherForecast.innerHTML = ''
     $('.today').style.padding = '20px 43px';
     $('.today').innerHTML = `<div class="loader"></div>`
+    weatherForecast.innerHTML = ''
 
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)
         .then(res => res.json()).then(data => {
-            console.log(data);
             weatherNow(data);
             futureWeatherData(data);
         })
-
-
 }
-searchCity.addEventListener('click', getWeatherData);
 
-setInterval('console.log("прошла секунда")', 2000)
+searchCityBtn.addEventListener('click', getWeatherData);
 
-inputCity.addEventListener('click', () => {
-    $('.buffer-zone').style.display = 'none'
-})
 
 function showWeatherData(data, currentData) {
     $('.future-forecast').style.display = 'flex'
-
     const Night = data.list.filter(nighttime => nighttime.dt_txt.includes("21:00:00"))
     $('.today').innerHTML = `
     <img src="http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png" class="icon">
@@ -141,64 +104,43 @@ function showWeatherData(data, currentData) {
 }
 
 
-
-
 function futureWeatherData(data) {
     const mapCb = time => new Date(time.dt_txt).getDay();
     const morningData = data.list.filter(daytime => daytime.dt_txt.includes("12:00:00"))
     const serialNumberDay = morningData.map(mapCb)
     const morningNight = data.list.filter(nighttime => nighttime.dt_txt.includes("21:00:00"))
     const serialNumberNight = morningNight.map(mapCb);
-    //↓
 
-
-    //↑
-    let dateNew = new Date().getDay()
-    let pizdaDay = null
-    if (morningData[0].dt_txt !== dateNew) {
-        pizdaDay = serialNumberDay.slice();
-    }
     const formatter = new Intl.DateTimeFormat('ru-RU', { weekday: 'long' });
-    //↓
-
-
-    //↑
     for (let i = 0; i < data.list.length; i++) {
-        const pizdaIndex = pizdaDay[i];
-        const date = new Date(morningData[serialNumberDay.indexOf(pizdaIndex)].dt_txt);
-        let xx = document.createElement('div')
-        xx.className = 'weather-forecast-item'
-        xx.setAttribute('data-id', pizdaIndex);
-        xx.setAttribute('data-date', date);
+        const date = new Date(morningData[serialNumberDay.indexOf(serialNumberDay[i])].dt_txt);
+        let cardDay = document.createElement('div')
+        cardDay.className = 'weather-forecast-item'
+        cardDay.setAttribute('data-id', serialNumberDay[i]);
+        cardDay.setAttribute('data-date', date);
 
-        const today = new Date(xx.dataset.date).toISOString().slice(0, 10)
+        const today = new Date(cardDay.dataset.date).toISOString().slice(0, 10)
         const filterDay22 = data.list.filter(daytime => daytime.dt_txt.includes(today))
 
-        xx.innerHTML = `
+        cardDay.innerHTML = `
         <div class="day"> 
         ${formatter.format(date)}
         </div>
         <img src='http://openweathermap.org/img/wn/${filterDay22[i].weather[0].icon}@2x.png'>
         <div class="temp">
-        День - ${morningData[serialNumberDay.indexOf(pizdaIndex)].main.temp} °C
+        День - ${morningData[serialNumberDay.indexOf(serialNumberDay[i])].main.temp} °C
         </div>
         <div class="temp">
-        Ночь - ${morningNight[serialNumberNight.indexOf(pizdaIndex)].main.temp} °C
+        Ночь - ${morningNight[serialNumberNight.indexOf(serialNumberDay[i])].main.temp} °C
         </div>`;
-        weatherForecast.appendChild(xx)
+        weatherForecast.appendChild(cardDay)
 
 
-        xx.addEventListener('click', () => {
+        cardDay.addEventListener('click', () => {
             $('.buffer-zone').style.display = 'flex'
             $('.current-wrapper').style.display = 'none'
             $(`.parameters-wraper`).innerHTML = ''
             for (let i = 0; i < filterDay22.length; i++) {
-
-
-                // ↓
-                let pr = filterDay22[i].main.pressure / 1.333 + ''
-                let x = pr.substr(0, 3);
-                // ↑
 
                 $('#date-bleyt').innerHTML = today
                 $('.parameters-wraper').innerHTML += `
@@ -208,26 +150,23 @@ function futureWeatherData(data) {
                 <p class="parameters-text2 clear temp${i}">${filterDay22[i].weather[0].description}</p>
                 <p class="parameters-text3 clear description${i}">${filterDay22[i].main.temp}℃</p>
                 <p class="parameters-text4 clear feels_like${i}">${filterDay22[i].main.feels_like}℃</p>
-                <p class="parameters-text5 clear pressure${i}">${x} мм рт.ст</p>
+                <p class="parameters-text5 clear pressure${i}">${(filterDay22[i].main.pressure / 1.333).toFixed()} мм рт.ст</p>
                 <p class="parameters-text6 clear humidity${i}">${filterDay22[i].main.humidity}%</p>
                 <p class="parameters-text7 clear speed${i}">${filterDay22[i].wind.speed}м/с</p>
                 </div>`
-
-
             }
         })
     }
 }
 
 function currentWeather(data, currentData) {
-    let pr = (currentData.main.pressure / 1.333).toFixed()
     $('.today').addEventListener('click', () => {
         $('.current-wrapper').style.display = 'flex'
         $('.buffer-zone').style.display = 'none'
         $('.current-temp').innerHTML = currentData.main.temp + '℃ '
         $('.description').innerHTML = currentData.weather[0].description.toUpperCase()
         $('.wind-item').innerHTML = currentData.wind.speed
-        $('.pressure-item').innerHTML = pr + ' мм рт.ст.'
+        $('.pressure-item').innerHTML = (currentData.main.pressure / 1.333).toFixed() + ' мм рт.ст.'
         $('.humidity-item').innerHTML = currentData.main.humidity + '%'
     })
 }
