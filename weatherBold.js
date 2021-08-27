@@ -120,13 +120,13 @@ function futureWeatherData(data) {
         cardDay.setAttribute('data-date', date);
 
         const today = new Date(cardDay.dataset.date).toISOString().slice(0, 10)
-        const filterDay22 = data.list.filter(daytime => daytime.dt_txt.includes(today))
+        const filterDays = data.list.filter(daytime => daytime.dt_txt.includes(today))
 
         cardDay.innerHTML = `
         <div class="day"> 
         ${formatter.format(date)}
         </div>
-        <img src='http://openweathermap.org/img/wn/${filterDay22[i].weather[0].icon}@2x.png'>
+        <img src='http://openweathermap.org/img/wn/${filterDays[i].weather[0].icon}@2x.png'>
         <div class="temp">
         День - ${morningData[serialNumberDay.indexOf(serialNumberDay[i])].main.temp} °C
         </div>
@@ -140,21 +140,21 @@ function futureWeatherData(data) {
             $('.buffer-zone').style.display = 'flex'
             $('.current-wrapper').style.display = 'none'
             $(`.parameters-wraper`).innerHTML = ''
-            for (let i = 0; i < filterDay22.length; i++) {
 
+            filterDays.forEach(day => {
                 $('#date-bleyt').innerHTML = today
                 $('.parameters-wraper').innerHTML += `
-                <div class="parameters-item parameters${i}">  
-                <p class="parameters-text1 clear date${i}">${filterDay22[i].dt_txt.slice(10, 16)}</p>
-                <p class="img${i} clear img"><img src='http://openweathermap.org/img/wn/${filterDay22[i].weather[0].icon}@2x.png'</p>
-                <p class="parameters-text2 clear temp${i}">${filterDay22[i].weather[0].description}</p>
-                <p class="parameters-text3 clear description${i}">${filterDay22[i].main.temp}℃</p>
-                <p class="parameters-text4 clear feels_like${i}">${filterDay22[i].main.feels_like}℃</p>
-                <p class="parameters-text5 clear pressure${i}">${(filterDay22[i].main.pressure / 1.333).toFixed()} мм рт.ст</p>
-                <p class="parameters-text6 clear humidity${i}">${filterDay22[i].main.humidity}%</p>
-                <p class="parameters-text7 clear speed${i}">${filterDay22[i].wind.speed}м/с</p>
-                </div>`
-            }
+                    <div class="parameters-item">  
+                        <p class="parameter-date">${day.dt_txt.slice(10, 16)}</p>
+                        <p class="img"><img src='http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png'</p>
+                        <p class="parameter-description">${day.weather[0].description}</p>
+                        <p class="parameter-temp">${day.main.temp}℃</p>
+                        <p class="parameter-feels_like">${day.main.feels_like}℃</p>
+                        <p class="parameter-speed">${day.wind.speed}м/с</p>
+                        <p class="parameter-pressure">${(day.main.pressure / 1.333).toFixed()} мм рт.ст</p>
+                        <p class="parameter-humidity">${day.main.humidity}%</p>
+                    </div>`
+            });
         })
     }
 }

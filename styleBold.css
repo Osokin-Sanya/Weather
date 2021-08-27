@@ -167,7 +167,7 @@ button:hover {
     height: 235px;
 }
 
-#pidor {
+#weather-card {
     margin-top: 40px;
 }
 
@@ -178,7 +178,7 @@ button:hover {
     border-radius: 10px;
 }
 
-.parameters-text2 {
+.parameter-description {
     display: flex;
     align-items: center;
     font-size: 13px;
@@ -211,7 +211,7 @@ button:hover {
     margin-bottom: -14px;
 }
 
-.parameters-text1 {
+.parameter-date {
     margin-top: 20px;
 }
 
