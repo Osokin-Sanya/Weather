@@ -1,62 +1,62 @@
 const $ = _ => document.querySelector(_);
 const $$ = _ => document.querySelectorAll(_);
 
-const timeEl = $('.time');
-const dateEl = $('.date');
-
+const timeItam = $('.time');
+const dateItem = $('.date');
+const weatherForecast = $('.weather-forecast')
 const inputCity = $('input')
+const searchCityBtn = $('button')
+searchCityBtn.addEventListener('click', getWeatherForecast);
 inputCity.addEventListener('click', () => {
     $('.buffer-zone').style.display = 'none'
 })
 
-const searchCityBtn = $('button')
-const cityArr = [];
 const apiKey = 'a174f834c69eee3b72537c60e7312512';
 const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
-const weatherForecast = $('.weather-forecast')
 
-const days = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
+const daysArr = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+const monthsArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
-setInterval(() => {
-    let time = new Date();
-    let month = time.getMonth();
-    let date = time.getDate();
-    let day = time.getDay();
-    let hour = time.getHours();
-    hour = hour < 9 ? `0${hour}` : hour;
-    let minutes = time.getMinutes();
-    minutes = minutes < 9 ? `0${minutes}` : minutes;
-    timeEl.innerHTML = `${hour}:${minutes}`;
-    dateEl.innerHTML = days[day] + ', ' + date + ' ' + months[month]
-}, 1000);
+(function currentTime() {
+    setInterval(() => {
+        let time = new Date();
+        let month = time.getMonth();
+        let date = time.getDate();
+        let day = time.getDay();
+        let hour = time.getHours();
+        hour = hour < 9 ? `0${hour}` : hour;
+        let minutes = time.getMinutes();
+        minutes = minutes < 9 ? `0${minutes}` : minutes;
+        timeItam.innerHTML = `${hour}:${minutes}`;
+        dateItem.innerHTML = daysArr[day] + ', ' + date + ' ' + monthsArr[month]
+    }, 1000);
+}());
 
-
-function weatherNow(data) {
+function getCurrentWeatherData(data) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)
         .then(res => res.json()).then(currentData => {
-            showWeatherData(data, currentData);
-            currentWeather(data, currentData)
+            createCarddataCurrentWeather(data, currentData);
+            dataCurrentWeather(data, currentData)
         })
         .catch(function(error) {
             if (error) {
-                $('.today').style.padding = '20px 43px';
-                $('.today').innerHTML = `Такого города не существует`
+                $('.weather-today').style.padding = '20px 43px';
+                $('.weather-today').innerHTML = `Такого города не существует`
                 if (inputCity.value == 'City-17') {
-                    $('.today').innerHTML = `Добро пожаловать Доктор Фримен`
+                    $('.weather-today').innerHTML = `Добро пожаловать Доктор Фримен`
                     $('body').className = 'body-city-17'
                     $('input').className = 'input-city-17'
                     $('button').className = 'button-city-17'
                 }
                 if (inputCity.value == 'San-Andreas') {
-                    $('.today').innerHTML = `Ah, shit, here we go again`
+                    $('.weather-today').innerHTML = `Ah, shit, here we go again`
                     $('body').className = 'body-San-Andreas'
                     $('input').className = 'input-San-Andreas'
                     $('button').className = 'button-San-Andreas'
 
                 }
                 if (inputCity.value == 'Припять') {
-                    $('.today').innerHTML = `Ты бы еще консервных банок насобирал...`
+                    $('.weather-today').innerHTML = `Ты бы еще консервных банок насобирал...`
                     $('body').className = 'body-pripyat'
                     $('input').className = 'input-pripyat'
                     $('button').className = 'button-pripyat'
@@ -65,27 +65,25 @@ function weatherNow(data) {
         })
 }
 
-function getWeatherData() {
+function getWeatherForecast() {
     $('.buffer-zone').style.display = 'none'
     $('.current-wrapper').style.display = 'none'
-    $('.today').style.padding = '20px 43px';
-    $('.today').innerHTML = `<div class="loader"></div>`
+    $('.weather-today').style.padding = '20px 43px';
+    $('.weather-today').innerHTML = `<div class="loader"></div>`
     weatherForecast.innerHTML = ''
 
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)
         .then(res => res.json()).then(data => {
-            weatherNow(data);
+            getCurrentWeatherData(data);
             futureWeatherData(data);
         })
 }
 
-searchCityBtn.addEventListener('click', getWeatherData);
 
-
-function showWeatherData(data, currentData) {
+function createCarddataCurrentWeather(data, currentData) {
     $('.future-forecast').style.display = 'flex'
     const Night = data.list.filter(nighttime => nighttime.dt_txt.includes("21:00:00"))
-    $('.today').innerHTML = `
+    $('.weather-today').innerHTML = `
     <img src="http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png" class="icon">
     <div class="other">
     <div class="day">
@@ -108,13 +106,13 @@ function futureWeatherData(data) {
     const mapCb = time => new Date(time.dt_txt).getDay();
     const morningData = data.list.filter(daytime => daytime.dt_txt.includes("12:00:00"))
     const serialNumberDay = morningData.map(mapCb)
-    const morningNight = data.list.filter(nighttime => nighttime.dt_txt.includes("21:00:00"))
-    const serialNumberNight = morningNight.map(mapCb);
+    const nightData = data.list.filter(nighttime => nighttime.dt_txt.includes("21:00:00"))
+    const serialNumberNight = nightData.map(mapCb);
 
     const formatter = new Intl.DateTimeFormat('ru-RU', { weekday: 'long' });
     for (let i = 0; i < data.list.length; i++) {
         const date = new Date(morningData[serialNumberDay.indexOf(serialNumberDay[i])].dt_txt);
-        let cardDay = document.createElement('div')
+        const cardDay = document.createElement('div')
         cardDay.className = 'weather-forecast-item'
         cardDay.setAttribute('data-id', serialNumberDay[i]);
         cardDay.setAttribute('data-date', date);
@@ -131,7 +129,7 @@ function futureWeatherData(data) {
         День - ${morningData[serialNumberDay.indexOf(serialNumberDay[i])].main.temp} °C
         </div>
         <div class="temp">
-        Ночь - ${morningNight[serialNumberNight.indexOf(serialNumberDay[i])].main.temp} °C
+        Ночь - ${nightData[serialNumberNight.indexOf(serialNumberDay[i])].main.temp} °C
         </div>`;
         weatherForecast.appendChild(cardDay)
 
@@ -142,7 +140,7 @@ function futureWeatherData(data) {
             $(`.parameters-wraper`).innerHTML = ''
 
             filterDays.forEach(day => {
-                $('#date-bleyt').innerHTML = today
+                $('#date-current').innerHTML = today
                 $('.parameters-wraper').innerHTML += `
                     <div class="parameters-item">  
                         <p class="parameter-date">${day.dt_txt.slice(10, 16)}</p>
@@ -150,17 +148,17 @@ function futureWeatherData(data) {
                         <p class="parameter-description">${day.weather[0].description}</p>
                         <p class="parameter-temp">${day.main.temp}℃</p>
                         <p class="parameter-feels_like">${day.main.feels_like}℃</p>
-                        <p class="parameter-speed">${day.wind.speed}м/с</p>
                         <p class="parameter-pressure">${(day.main.pressure / 1.333).toFixed()} мм рт.ст</p>
                         <p class="parameter-humidity">${day.main.humidity}%</p>
+                        <p class="parameter-speed">${day.wind.speed}м/с</p>
                     </div>`
             });
         })
     }
 }
 
-function currentWeather(data, currentData) {
-    $('.today').addEventListener('click', () => {
+function dataCurrentWeather(data, currentData) {
+    $('.weather-today').addEventListener('click', () => {
         $('.current-wrapper').style.display = 'flex'
         $('.buffer-zone').style.display = 'none'
         $('.current-temp').innerHTML = currentData.main.temp + '℃ '
@@ -280,4 +278,4 @@ function autocomplete(inp, arr) {
 let countries = 'Алупка San-Andreas Алушта Армянск City-17 Залупенск Бахчисарай Белогорск Каменское Амогус-Сити Абобусград Владеславель Джанкой Евпатория Керчь Красноперекопск Саки Севастополь Симферополь Старый Крым Судак Феодосия Щёлкино Ялта Бар Бершадь Винница Гайсин Жмеринка Казатин Калиновка Ладыжин Могилёв-Подольский Немиров Погребище Тульчин Хмельник Шаргород Ямполь Берестечко Владимир-Волынский Горохов Камень-Каширский Киверцы Ковель Луцк Любомль Нововолынск Рожище Устилуг Апостолово Верхнеднепровск Вольногорск Днепродзержинск Днепропетровск Жёлтые Воды Кривой Рог Марганец Никополь Новомосковск Орджоникидзе Павлоград Перещепино Першотравенск Подгородное Пятихатки Синельниково Терновка Авдеевка Артёмовск Волноваха Горловка Дзержинск Дебальцево Димитров Доброполье Докучаевск Донецк Дружковка Енакиево Ждановка Зугрэс Кировское Краматорск Красноармейск Красный Лиман Константиновка Мариуполь Макеевка Новогродовка Селидово Славянск Снежное Соледар Торез Угледар Харцызск Шахтёрск Ясиноватая Андрушёвка Барановка Бердичев Житомир Коростень Коростышев Малин Новоград-Волынский Овруч Радомышль Берегово Виноградов Иршава Мукачево Перечин Рахов Свалява Тячев Ужгород Хуст Чоп Бердянск Васильевка Вольнянск Гуляйполе Днепрорудное Запорожье Каменка-Днепровская Мелитополь Молочанск Орехов Пологи Приморск Токмак Энергодар Болехов Бурштын Галич Городенка Долина Ивано-Франковск Калуш Коломыя Косов Надворная Рогатин Снятын Тысменица Тлумач Яремче Белая Церковь Березань Богуслав Борисполь Боярка Бровары Буча Васильков Вишнёвое Вышгород Ирпень Кагарлык Киев Мироновка Обухов Переяслав-Хмельницкий Припять Ржищев Сквира Славутич Тараща Тетиев Узин Украинка Фастов Чернобыль Яготин Александрия Бобринец Гайворон Долинская Знаменка Кировоград Малая Виска Новомиргород Новоукраинка Светловодск Александровск Алмазная Алчевск Антрацит Брянка Вахрушево Горное Зимогорье Золотое Зоринск Краснодон Красный Луч Лисичанск Луганск Лутугино Миусинск Молодогвардейск Новодружеск Новопсков Первомайск Перевальск Петровское Попасная Приволье Ровеньки Рубежное Сватово Свердловск Северодонецк Старобельск Стаханов Суходольск Счастье Теплогорск Червонопартизанск Белз Бобрка Борислав Броды Буск Великие Мосты Глиняны Городок Добромиль Дрогобыч Дубляны Жидачов Жолква Золочев Каменка-Бугская Львов Мостиска Перемышляны Пустомыты Рава-Русская Радехов Рудки Самбор Сколе Сокаль Старый Самбор Стрый Трускавец Угнев Хыров Червоноград Яворов Баштанка Вознесенск Николаев Новая Одесса Новый Буг Очаков Первомайск Снигирёвка Южноукраинск Ананьев Арциз Балта Белгород-Днестровский Болград Измаил Ильичёвск Килия Кодыма Котовск Одесса Татарбунары Теплодар Южное Гадяч Глобино Гребёнка Зеньков Карловка Кременчуг Кобеляки Комсомольск Лохвица Лубны Миргород Пирятин Полтава Хорол Червонозаводское Березне Дубно Дубровица Здолбунов Корец Костополь Кузнецовск Острог Радивилов Ровно Сарны Ахтырка Белополье Бурынь Глухов Кролевец Конотоп Лебедин Путивль Ромны Середина-Буда Сумы Тростянец Шостка Бережаны Борщёв Бучач Залещики Збараж Зборов Кременец Лановцы Монастыриска Подволочиск Подгайцы Почаев Скалат Тернополь Теребовля Чортков Шумск Балаклея Барвенково Богодухов Валки Великий Бурлук Волчанск Дергачи Змиев Изюм Красноград Купянск Лозовая Люботин Мерефа Первомайский Харьков Чугуев Берислав Геническ Голая Пристань Каховка Новая Каховка Скадовск Таврийск Херсон Цюрупинск Волочиск Городок Деражня Дунаевцы Изяслав Каменец-Подольский Красилов Нетешин Полонное Славута Староконстантинов Хмельницкий Шепетовка Ватутино Городище Жашков Звенигородка Золотоноша Каменка Канев Корсунь-Шевченковский Монастырище Смела Тальное Умань Христиновка Черкассы Чигирин Шпола Бахмач Бобровица Борзна Городня Десна Ичня Корюковка Мена Нежин Новгород-Северский Носовка Прилуки Седнев Семёновка Чернигов Щорс Вашковцы Вижница Герца Заставна Кицмань Новоднестровск Новоселица Сокиряны Сторожинец Хотин'.split(' ')
 
 /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
-autocomplete(document.getElementById("myInput"), countries);
+autocomplete($("#myInput"), countries);

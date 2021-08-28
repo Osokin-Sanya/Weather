@@ -69,7 +69,7 @@ body {
     display: none;
 }
 
-.future-forecast .today {
+.future-forecast .weather-today {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,14 +81,14 @@ body {
     background: rgba(0, 0, 0, 0.2)
 }
 
-.future-forecast .today .day {
+.future-forecast .weather-today .day {
     padding: 5px 15px;
     background: #3c3c44;
     border-radius: 50px;
     text-align: center;
 }
 
-.future-forecast .today .temp {
+.future-forecast .weather-today .temp {
     font-size: 17px;
 }
 
@@ -162,9 +162,7 @@ button:hover {
 
 .parameters {
     display: flex;
-    justify-content: space-between;
-    width: 1200px;
-    height: 235px;
+    justify-content: center;
 }
 
 #weather-card {
@@ -313,12 +311,11 @@ button:hover {
 
 .parameters-wraper {
     display: flex;
-    width: 79%;
-    justify-content: space-between;
+    margin-left: 35px;
 }
 
 .autocomplete-items .autocomplete-active {
-    background: brown;
+    background: rgba(4, 50, 255, 0.4);
     /* important */
 }
 
