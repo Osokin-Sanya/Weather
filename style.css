@@ -12,12 +12,12 @@
 
 @font-face {
     font-family: Cartonsix;
-    src: url(Cartonsix\ NC.ttf);
+    src: url(fonts/BIPs.ttf);
 }
 
 @font-face {
     font-family: Artist-Nouveau;
-    src: url(Artist-Nouveau.ttf);
+    src: url(fonts/Artist-Nouveau.ttf);
 }
 
 body {
@@ -172,7 +172,7 @@ button:hover {
 .date {
     display: flex;
     font-size: 30px;
-    font-family: Rampart;
+    font-family: Cartonsix;
 }
 
 .parameters {
