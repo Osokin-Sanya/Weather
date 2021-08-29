@@ -17,20 +17,20 @@ const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
 const daysArr = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 const monthsArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
-(function currentTime() {
-    setInterval(() => {
-        let time = new Date();
-        let month = time.getMonth();
-        let date = time.getDate();
-        let day = time.getDay();
-        let hour = time.getHours();
-        hour = hour < 9 ? `0${hour}` : hour;
-        let minutes = time.getMinutes();
-        minutes = minutes < 9 ? `0${minutes}` : minutes;
-        timeItam.innerHTML = `${hour}:${minutes}`;
-        dateItem.innerHTML = daysArr[day] + ', ' + date + ' ' + monthsArr[month]
-    }, 1000);
-}());
+
+setInterval(() => {
+    let time = new Date();
+    let month = time.getMonth();
+    let date = time.getDate();
+    let day = time.getDay();
+    let hour = time.getHours();
+    hour = hour < 9 ? `0${hour}` : hour;
+    let minutes = time.getMinutes();
+    minutes = minutes < 9 ? `0${minutes}` : minutes;
+    timeItam.innerHTML = `${hour}:${minutes}`;
+    dateItem.innerHTML = daysArr[day] + ', ' + date + ' ' + monthsArr[month]
+}, 1000);
+
 
 function getCurrentWeatherData(data) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)

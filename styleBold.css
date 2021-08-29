@@ -5,6 +5,21 @@
     outline: none;
 }
 
+@font-face {
+    font-family: Rampart;
+    src: url(BIPs.ttf);
+}
+
+@font-face {
+    font-family: Cartonsix;
+    src: url(Cartonsix\ NC.ttf);
+}
+
+@font-face {
+    font-family: Artist-Nouveau;
+    src: url(Artist-Nouveau.ttf);
+}
+
 body {
     background: url('https://storge.pic2.me/c/1360x800/550/5416b7af2bed9.jpg');
     background-repeat: no-repeat;
@@ -29,10 +44,7 @@ body {
 
 .date-container .time {
     font-size: 70px;
-}
-
-.date-container .date {
-    font-size: 30px;
+    font-family: Artist-Nouveau;
 }
 
 .place-container {
@@ -67,6 +79,7 @@ body {
     justify-content: center;
     overflow-y: hidden;
     display: none;
+    font-family: 'STIX Two Math', serif;
 }
 
 .future-forecast .weather-today {
@@ -109,7 +122,7 @@ body {
 }
 
 .weather-forecast .weather-forecast-item .day {
-    padding: 5px 8px;
+    padding: 6px 11px;
     background: #3C3C44;
     border-radius: 50px;
     text-align: center;
@@ -158,6 +171,8 @@ button:hover {
 
 .date {
     display: flex;
+    font-size: 30px;
+    font-family: Rampart;
 }
 
 .parameters {
@@ -193,7 +208,8 @@ button:hover {
     font-weight: 700;
     font-size: 20px;
     border: 1px solid;
-    padding: 6%
+    padding: 6%;
+    font-family: 'Besley', serif;
 }
 
 .wrapper-zone {
@@ -279,7 +295,12 @@ button:hover {
     background-color: rgba(4, 50, 255, 0.4);
 }
 
-.myInput[type=text] {
+#myInput {
+    /* font-family:  ; */
+}
+
+
+/* .myInput[type=text] {
     background-color: #f1f1f1;
     width: 100%;
 }
@@ -287,7 +308,7 @@ button:hover {
 .myInput[type=submit] {
     background-color: DodgerBlue;
     color: #fff;
-}
+} */
 
 .loader {
     border: 5px solid #f3f3f3;
@@ -312,6 +333,7 @@ button:hover {
 .parameters-wraper {
     display: flex;
     margin-left: 35px;
+    font-family: 'STIX Two Math', serif;
 }
 
 .autocomplete-items .autocomplete-active {
