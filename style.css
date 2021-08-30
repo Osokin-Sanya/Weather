@@ -21,7 +21,7 @@
 }
 
 body {
-    background: url('https://storge.pic2.me/c/1360x800/550/5416b7af2bed9.jpg');
+    background: url("https://storge.pic2.me/c/1360x800/550/5416b7af2bed9.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -79,7 +79,7 @@ body {
     justify-content: center;
     overflow-y: hidden;
     display: none;
-    font-family: 'STIX Two Math', serif;
+    font-family: "STIX Two Math", serif;
 }
 
 .future-forecast .weather-today {
@@ -91,7 +91,7 @@ body {
     padding: 15px;
     padding-right: 40px;
     border-radius: 10px;
-    background: rgba(0, 0, 0, 0.2)
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .future-forecast .weather-today .day {
@@ -123,7 +123,7 @@ body {
 
 .weather-forecast .weather-forecast-item .day {
     padding: 6px 11px;
-    background: #3C3C44;
+    background: #3c3c44;
     border-radius: 50px;
     text-align: center;
 }
@@ -166,7 +166,7 @@ button:hover {
     display: flex;
     justify-content: center;
     display: none;
-    height: 251px
+    height: 251px;
 }
 
 .date {
@@ -209,7 +209,7 @@ button:hover {
     font-size: 20px;
     border: 1px solid;
     padding: 6%;
-    font-family: 'Besley', serif;
+    font-family: "Besley", serif;
 }
 
 .wrapper-zone {
@@ -269,7 +269,7 @@ button:hover {
 
 .current-weather div {
     font-size: 17px;
-    font-family: 'Besley', serif;
+    font-family: "Besley", serif;
     line-height: 24px;
 }
 
@@ -302,8 +302,12 @@ button:hover {
     width: 96%;
 }
 
-.autocomplete-wrapper .autocomplete-hover {
+.autocomplete-wrapper .autocomplete-hover:focus {
     background-color: rgba(4, 50, 255, 0.8);
+}
+
+.autocomplete-wrapper .autocomplete-active-item {
+    background-color: #f00;
 }
 
 
@@ -349,7 +353,7 @@ button:hover {
 .parameters-wraper {
     display: flex;
     margin-left: 35px;
-    font-family: 'STIX Two Math', serif;
+    font-family: "STIX Two Math", serif;
 }
 
 .autocomplete-items .autocomplete-active {
@@ -358,7 +362,7 @@ button:hover {
 }
 
 .body-city-17 {
-    background: no-repeat url('https://genapilot.ru/wp-content/uploads/2020/04/novyj-mod-dlja-half-life-alyx-perenosit-gorod-city-17-na-igrovoj-dvizhok-source.jpg')
+    background: no-repeat url("https://genapilot.ru/wp-content/uploads/2020/04/novyj-mod-dlja-half-life-alyx-perenosit-gorod-city-17-na-igrovoj-dvizhok-source.jpg");
 }
 
 .input-city-17,
@@ -376,7 +380,7 @@ button:hover {
 }
 
 .body-San-Andreas {
-    background: no-repeat url('https://ovicio.com.br/wp-content/uploads/2021/05/20210502-sanandreas.jpg')
+    background: no-repeat url("https://ovicio.com.br/wp-content/uploads/2021/05/20210502-sanandreas.jpg");
 }
 
 .input-San-Andreas,
@@ -390,7 +394,7 @@ button:hover {
 }
 
 .body-pripyat {
-    background: no-repeat url('https://vgtimes.ru/uploads/posts/2020-07/1595525519_01.jpg');
+    background: no-repeat url("https://vgtimes.ru/uploads/posts/2020-07/1595525519_01.jpg");
 }
 
 .input-pripyat,

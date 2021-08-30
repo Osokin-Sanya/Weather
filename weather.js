@@ -84,21 +84,13 @@ function createCarddataCurrentWeather(data, currentData) {
     $('.future-forecast').style.display = 'flex'
     const Night = data.list.filter(nighttime => nighttime.dt_txt.includes("21:00:00"))
     $('.weather-today').innerHTML = `
-    <img src="http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png" class="icon">
-    <div class="other">
-    <div class="day">
-    Сейчас 
-    </div>
-        <div class="temp">
-    ${currentData.main.temp}°C
-        </div>
-    <div class="day">
-     Ночью 
-        </div>
-    <div class="temp">
-        ${Night[0].main.temp}°C
-    </div>
-    </div>`
+        <img src="http://openweathermap.org/img/wn/${currentData.weather[0].icon}@2x.png" class="icon" />
+        <div class="other">
+            <div class="day">Сейчас</div>
+            <div class="temp">${currentData.main.temp}°C</div>
+            <div class="day">Ночью</div>
+            <div class="temp">${Night[0].main.temp}°C</div>
+        </div>`
 }
 
 
@@ -169,49 +161,76 @@ function dataCurrentWeather(data, currentData) {
     })
 }
 
-
-
-
 function autocomplete(inp, arr) {
     const wrapperCity = document.createElement('div')
     wrapperCity.className = 'autocomplete-wrapper'
     $('.citi').appendChild(wrapperCity)
+
+    let showСitieslength = 0;
+
     inp.addEventListener('input', () => {
 
         console.log(this.value);
 
-        let x = inp.value.trim()
-        const showСities = arr.filter(elem => elem.toLowerCase().indexOf(x.toLowerCase()) >= 0)
-        showСities.className = 'autocomplete-item'
+        let x = inp.value.trim();
+        // ИСПОЛЬЗУЙ СТАРТ ВИС
+        const showСities = arr.filter(elem => elem.toLowerCase().indexOf(x.toLowerCase()) >= 0);
+        showСities.className = 'autocomplete-item';
         wrapperCity.innerHTML = '';
 
+        showСitieslength = showСities.length;
+
         for (let i = 0; i < showСities.length; i++) {
-            const sarchCite = document.createElement('div')
-            sarchCite.setAttribute("data-id", i);
-            sarchCite.innerHTML = showСities[i]
-            if (x.length > 0) {
-                wrapperCity.appendChild(sarchCite)
-            }
-            sarchCite.addEventListener('click', () => {
-                inp.value = sarchCite.textContent
+            const searchCity = document.createElement('div')
+            searchCity.classList.add("autocomplete-item");
+            searchCity.setAttribute("data-autocomplete-id", i); // МОЖЕШЬ УДАЛИТЬ
+            searchCity.setAttribute("tabindex", 0); // И ЭТО
+
+            searchCity.innerHTML = showСities[i]
+            if (x.length > 0) wrapperCity.appendChild(searchCity);
+
+            searchCity.addEventListener('click', () => {
+                inp.value = searchCity.textContent;
                 wrapperCity.innerHTML = '';
             })
-
-
-            // inp.addEventListener('keydown', e => {
-            //     let keyCode = e.keyCode;
-            //     if (keyCode === 40) {
-            //         if (sarchCite.dataset.id == i) {
-            //             sas.className = 'autocomplete-hover'
-            //         }
-            //         sas.className = 'autocomplete-hover'
-            //     }
-            // });
         }
-        // console.log(showСities.length);
-        // console.log(wrapperCity[showСities.length]);
-    })
+    });
 
+    const KEY_DOWN = 40;
+    const KEY_UP = 38;
+
+    let selectedIndex = 0; // ОБНУЛЯТЬ ВОТ ЭТУ ПРИБЛУДУ
+    const selector = 'autocomplete-active-item';
+
+    //const getItem = i => $(`div[data-autocomplete-id="${i}"]`);
+    const getItem = i => $$(`.autocomplete-item`)[i];
+
+    inp.addEventListener('keydown', ({ keyCode }) => {
+        console.log({ selectedIndex });
+
+        if (keyCode === KEY_DOWN) {
+            if (selectedIndex >= showСitieslength) return;
+            // if (selectedIndex >= $$(`div[data-autocomplete-id]`).length) return;
+
+            const prevItem = getItem(selectedIndex - 1);
+            prevItem && prevItem.classList.remove(selector);
+
+            const findedItem = getItem(selectedIndex);
+            findedItem && findedItem.classList.add(selector);
+            selectedIndex++;
+        }
+
+        if (keyCode === KEY_UP) {
+            // < 0
+            selectedIndex--;
+
+            const prevItem = getItem(selectedIndex);
+            prevItem && prevItem.classList.remove(selector);
+
+            const findedItem = getItem(selectedIndex - 1);
+            findedItem && findedItem.classList.add(selector);
+        }
+    });
 }
 
 let countries = 'Алупка San-Andreas Алушта Армянск City-17 Залупенск Бахчисарай Белогорск Каменское Амогус-Сити Абобусград Владеславель Джанкой Евпатория Керчь Красноперекопск Саки Севастополь Симферополь Старый Крым Судак Феодосия Щёлкино Ялта Бар Бершадь Винница Гайсин Жмеринка Казатин Калиновка Ладыжин Могилёв-Подольский Немиров Погребище Тульчин Хмельник Шаргород Ямполь Берестечко Владимир-Волынский Горохов Камень-Каширский Киверцы Ковель Луцк Любомль Нововолынск Рожище Устилуг Апостолово Верхнеднепровск Вольногорск Днепродзержинск Днепропетровск Жёлтые Воды Кривой Рог Марганец Никополь Новомосковск Орджоникидзе Павлоград Перещепино Першотравенск Подгородное Пятихатки Синельниково Терновка Авдеевка Артёмовск Волноваха Горловка Дзержинск Дебальцево Димитров Доброполье Докучаевск Донецк Дружковка Енакиево Ждановка Зугрэс Кировское Краматорск Красноармейск Красный Лиман Константиновка Мариуполь Макеевка Новогродовка Селидово Славянск Снежное Соледар Торез Угледар Харцызск Шахтёрск Ясиноватая Андрушёвка Барановка Бердичев Житомир Коростень Коростышев Малин Новоград-Волынский Овруч Радомышль Берегово Виноградов Иршава Мукачево Перечин Рахов Свалява Тячев Ужгород Хуст Чоп Бердянск Васильевка Вольнянск Гуляйполе Днепрорудное Запорожье Каменка-Днепровская Мелитополь Молочанск Орехов Пологи Приморск Токмак Энергодар Болехов Бурштын Галич Городенка Долина Ивано-Франковск Калуш Коломыя Косов Надворная Рогатин Снятын Тысменица Тлумач Яремче Белая Церковь Березань Богуслав Борисполь Боярка Бровары Буча Васильков Вишнёвое Вышгород Ирпень Кагарлык Киев Мироновка Обухов Переяслав-Хмельницкий Припять Ржищев Сквира Славутич Тараща Тетиев Узин Украинка Фастов Чернобыль Яготин Александрия Бобринец Гайворон Долинская Знаменка Кировоград Малая Виска Новомиргород Новоукраинка Светловодск Александровск Алмазная Алчевск Антрацит Брянка Вахрушево Горное Зимогорье Золотое Зоринск Краснодон Красный Луч Лисичанск Луганск Лутугино Миусинск Молодогвардейск Новодружеск Новопсков Первомайск Перевальск Петровское Попасная Приволье Ровеньки Рубежное Сватово Свердловск Северодонецк Старобельск Стаханов Суходольск Счастье Теплогорск Червонопартизанск Белз Бобрка Борислав Броды Буск Великие Мосты Глиняны Городок Добромиль Дрогобыч Дубляны Жидачов Жолква Золочев Каменка-Бугская Львов Мостиска Перемышляны Пустомыты Рава-Русская Радехов Рудки Самбор Сколе Сокаль Старый Самбор Стрый Трускавец Угнев Хыров Червоноград Яворов Баштанка Вознесенск Николаев Новая Одесса Новый Буг Очаков Первомайск Снигирёвка Южноукраинск Ананьев Арциз Балта Белгород-Днестровский Болград Измаил Ильичёвск Килия Кодыма Котовск Одесса Татарбунары Теплодар Южное Гадяч Глобино Гребёнка Зеньков Карловка Кременчуг Кобеляки Комсомольск Лохвица Лубны Миргород Пирятин Полтава Хорол Червонозаводское Березне Дубно Дубровица Здолбунов Корец Костополь Кузнецовск Острог Радивилов Ровно Сарны Ахтырка Белополье Бурынь Глухов Кролевец Конотоп Лебедин Путивль Ромны Середина-Буда Сумы Тростянец Шостка Бережаны Борщёв Бучач Залещики Збараж Зборов Кременец Лановцы Монастыриска Подволочиск Подгайцы Почаев Скалат Тернополь Теребовля Чортков Шумск Балаклея Барвенково Богодухов Валки Великий Бурлук Волчанск Дергачи Змиев Изюм Красноград Купянск Лозовая Люботин Мерефа Первомайский Харьков Чугуев Берислав Геническ Голая Пристань Каховка Новая Каховка Скадовск Таврийск Херсон Цюрупинск Волочиск Городок Деражня Дунаевцы Изяслав Каменец-Подольский Красилов Нетешин Полонное Славута Староконстантинов Хмельницкий Шепетовка Ватутино Городище Жашков Звенигородка Золотоноша Каменка Канев Корсунь-Шевченковский Монастырище Смела Тальное Умань Христиновка Черкассы Чигирин Шпола Бахмач Бобровица Борзна Городня Десна Ичня Корюковка Мена Нежин Новгород-Северский Носовка Прилуки Седнев Семёновка Чернигов Щорс Вашковцы Вижница Герца Заставна Кицмань Новоднестровск Новоселица Сокиряны Сторожинец Хотин'.split(' ')
