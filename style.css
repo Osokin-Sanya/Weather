@@ -252,18 +252,25 @@ button:hover {
     font-size: 90px;
     text-align: center;
     margin: 17px 0;
+    font-family: sans-serif;
 }
 
 .description {
     text-align: center;
     font-size: 41px;
+    font-family: cursive;
 }
 
 .current-weather {
     display: flex;
     text-align: center;
     justify-content: space-around;
-    margin: 16px 0 14px 0;
+}
+
+.current-weather div {
+    font-size: 17px;
+    font-family: 'Besley', serif;
+    line-height: 24px;
 }
 
 .autocomplete {
@@ -276,6 +283,8 @@ button:hover {
     z-index: 99;
     overflow-y: scroll;
     height: 310px;
+    border-radius: 5px;
+    width: 232px;
 }
 
 .autocomplete-items::-webkit-scrollbar {
@@ -289,10 +298,11 @@ button:hover {
     background-color: rgba(24, 24, 27);
     border: 1px solid #ffffff;
     border-radius: 5px;
+    width: 96%;
 }
 
 .autocomplete-items div:hover {
-    background-color: rgba(4, 50, 255, 0.4);
+    background-color: rgba(4, 50, 255, 0.8);
 }
 
 #myInput {
