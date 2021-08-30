@@ -161,7 +161,7 @@ button:hover {
 
 .buffer-zone {
     color: white;
-    background: rgba(24, 24, 27, 0.8);
+    background: rgba(24, 24, 27, 0.7);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -278,20 +278,21 @@ button:hover {
     display: inline-block;
 }
 
-.autocomplete-items {
+.autocomplete-wrapper {
     position: absolute;
     z-index: 99;
     overflow-y: scroll;
     height: 310px;
     border-radius: 5px;
     width: 232px;
+    margin-top: 2px;
 }
 
-.autocomplete-items::-webkit-scrollbar {
+.autocomplete-wrapper::-webkit-scrollbar {
     width: 0;
 }
 
-.autocomplete-items div {
+.autocomplete-wrapper div {
     margin-top: 4px;
     padding: 10px;
     cursor: pointer;
@@ -301,9 +302,14 @@ button:hover {
     width: 96%;
 }
 
-.autocomplete-items div:hover {
+.autocomplete-wrapper .autocomplete-hover {
     background-color: rgba(4, 50, 255, 0.8);
 }
+
+
+/* .autocomplete-wrapper div:hover {
+    background-color: rgba(4, 50, 255, 0.8);
+} */
 
 #myInput {
     /* font-family:  ; */
