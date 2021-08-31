@@ -306,12 +306,12 @@ button:hover {
     width: 96%;
 }
 
-.autocomplete-wrapper .autocomplete-hover:focus {
+.autocomplete-wrapper .autocomplete-active-item {
     background-color: rgba(4, 50, 255, 0.8);
 }
 
-.autocomplete-wrapper .autocomplete-active-item {
-    background-color: #f00;
+.autocomplete-item:hover {
+    background-color: rgba(4, 50, 255, 0.8);
 }
 
 
