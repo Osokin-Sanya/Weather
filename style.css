@@ -288,6 +288,10 @@ button:hover {
     margin-top: 2px;
 }
 
+.autocomplete-wrapper-none {
+    display: none;
+}
+
 .autocomplete-wrapper::-webkit-scrollbar {
     width: 0;
 }
