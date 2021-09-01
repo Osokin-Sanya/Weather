@@ -310,7 +310,7 @@ button:hover {
     background-color: rgba(4, 50, 255, 0.8);
 }
 
-.autocomplete-item:hover {
+.autocomplete-wrapper .autocomplete-item-hover {
     background-color: rgba(4, 50, 255, 0.8);
 }
 

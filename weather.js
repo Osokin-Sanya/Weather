@@ -16,8 +16,7 @@ const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
 const daysArr = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 const monthsArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
-
-setInterval(() => {
+function showCurrentTime() {
     let time = new Date();
     let month = time.getMonth();
     let date = time.getDate();
@@ -28,7 +27,10 @@ setInterval(() => {
     minutes = minutes < 9 ? `0${minutes}` : minutes;
     timeItam.innerHTML = `${hour}:${minutes}`;
     dateItem.innerHTML = daysArr[day] + ', ' + date + ' ' + monthsArr[month]
-}, 1000);
+}
+showCurrentTime()
+setInterval(showCurrentTime, 1000);
+
 
 
 function getCurrentWeatherData(data) {
@@ -159,6 +161,7 @@ function dataCurrentWeather(data, currentData) {
     })
 }
 
+
 function autocomplete(inp, arr) {
     const wrapperCity = document.createElement('div')
     wrapperCity.className = 'autocomplete-wrapper'
@@ -193,14 +196,32 @@ function autocomplete(inp, arr) {
                 wrapperCity.innerHTML = '';
             })
 
-            searchCity.addEventListener('mouseover', () => {
+            searchCity.addEventListener('mouseover', focuCity)
+            searchCity.addEventListener('mouseout', focuCity2)
+
+            function focuCity() {
+                $$('.autocomplete-item')[i].classList.add('autocomplete-item-hover')
+                console.log(1);
+                selectedIndex = i + 1
+                if ($('.autocomplete-active-item')) {
+                    $('.autocomplete-active-item').classList.remove(selector)
+
+                }
+
+            }
+
+            function focuCity2() {
+                selectedIndex = 0
                 if ($('.autocomplete-active-item')) {
                     $('.autocomplete-active-item').classList.remove(selector)
                 }
-                selectedIndex = 0
-            })
+                $$('.autocomplete-item')[i].classList.remove('autocomplete-item-hover')
+            }
+
         }
     });
+
+
 
     const KEY_DOWN = 40;
     const KEY_UP = 38;
@@ -214,6 +235,7 @@ function autocomplete(inp, arr) {
 
 
 
+
     inp.addEventListener('keydown', event => { // зачем брать в объект?
 
         if (1 == 1) {
@@ -224,13 +246,16 @@ function autocomplete(inp, arr) {
                 const findedItem = getItem(selectedIndex);
                 findedItem && findedItem.classList.add(selector);
                 selectedIndex++;
-                event.preventDefault();
-                inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
+                // inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
 
-                if ($(`.autocomplete-active-item`)) {}
+                if ($(`.autocomplete-item-hover`)) {
+                    $$('.autocomplete-item')[selectedIndex - 2].classList.remove('autocomplete-item-hover')
+
+                }
             }
 
             if (event.keyCode == KEY_UP) {
+                event.preventDefault();
                 if (selectedIndex == 1) return;
                 if (selectedIndex == 0) return;
                 selectedIndex--;
@@ -238,8 +263,11 @@ function autocomplete(inp, arr) {
                 prevItem && prevItem.classList.remove(selector);
                 const findedItem = getItem(selectedIndex - 1);
                 findedItem && findedItem.classList.add(selector);
-                event.preventDefault();
-                inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
+
+                // inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
+
+                $$('.autocomplete-item')[selectedIndex].classList.remove('autocomplete-item-hover')
+
             }
         }
 
@@ -249,33 +277,14 @@ function autocomplete(inp, arr) {
             wrapperCity.classList.add('autocomplete-wrapper-none')
         }
 
-        // if (keyCode === KEY_DOWN) {
-        //     if (selectedIndex >= showСitieslength) return;
 
-        //     const prevItem = getItem(selectedIndex - 1);
-        //     prevItem && prevItem.classList.remove(selector);
-
-        //     const findedItem = getItem(selectedIndex);
-        //     findedItem && findedItem.classList.add(selector);
-        //     selectedIndex++;
-
-        // }
-
-        // if (keyCode === KEY_UP) {
-        //     if (selectedIndex == 1) return;
-        //     if (selectedIndex == 0) return;
-        //     selectedIndex--;
-        //     inp.length = 100
-        //     console.log();
-
-        //     const prevItem = getItem(selectedIndex);
-        //     prevItem && prevItem.classList.remove(selector);
-
-        //     const findedItem = getItem(selectedIndex - 1);
-        //     findedItem && findedItem.classList.add(selector);
-        // }
     });
 }
 
 let countries = 'Алупка San-Andreas Denmark Djibouti Dominica Saint-Kitts Nevis Saint-Lucia Saint-Vincent Samoa San-Marino Sao-Tome Principe Saudi-Arabia Schaumburg-Lippe Senegal Serbia Seychelles Sierra Leone-Singapore Dominican-Republic Duchy-of-Parma Slovakia Slovenia Solomon Islands  Somalia South Africa South Sudan Spain Sri Lanka Sudan Suriname Sweden Switzerland Syria Алушта Армянск City-17 Залупенск Бахчисарай Белогорск Каменское Амогус-Сити Абобусград Владеславель Джанкой Евпатория Керчь Красноперекопск Саки Севастополь Симферополь Старый Крым Крым-Наш Судак Феодосия Щёлкино Ялта Бар Бершадь Винница Гайсин Жмеринка Казатин Калиновка Ладыжин Могилёв-Подольский Немиров Погребище Тульчин Хмельник Шаргород Ямполь Берестечко Владимир-Волынский Горохов Камень-Каширский Киверцы Ковель Луцк Любомль Нововолынск Рожище Устилуг Апостолово Верхнеднепровск Вольногорск Днепродзержинск Днепропетровск Жёлтые Воды Кривой Рог Марганец Никополь Новомосковск Орджоникидзе Павлоград Перещепино Першотравенск Подгородное Пятихатки Синельниково Терновка Авдеевка Артёмовск Волноваха Горловка Дзержинск Дебальцево Димитров Доброполье Докучаевск Донецк Дружковка Енакиево Ждановка Зугрэс Кировское Краматорск Красноармейск Красный Лиман Константиновка Мариуполь Макеевка Новогродовка Селидово Славянск Снежное Соледар Торез Угледар Харцызск Шахтёрск Ясиноватая Андрушёвка Барановка Бердичев Житомир Коростень Коростышев Малин Новоград-Волынский Овруч Радомышль Берегово Виноградов Иршава Мукачево Перечин Рахов Свалява Тячев Ужгород Хуст Чоп Бердянск Васильевка Вольнянск Гуляйполе Днепрорудное Запорожье Каменка-Днепровская Мелитополь Молочанск Орехов Пологи Приморск Токмак Энергодар Болехов Бурштын Галич Городенка Долина Ивано-Франковск Калуш Коломыя Косов Надворная Рогатин Снятын Тысменица Тлумач Яремче Белая Церковь Березань Богуслав Борисполь Боярка Бровары Буча Васильков Вишнёвое Вышгород Ирпень Кагарлык Киев Мироновка Обухов Переяслав-Хмельницкий Припять Ржищев Сквира Славутич Тараща Тетиев Узин Украинка Фастов Чернобыль Яготин Александрия Бобринец Гайворон Долинская Знаменка Кировоград Малая Виска Новомиргород Новоукраинка Светловодск Александровск Алмазная Алчевск Антрацит Брянка Вахрушево Горное Зимогорье Золотое Зоринск Краснодон Красный Луч Лисичанск Луганск Лутугино Миусинск Молодогвардейск Новодружеск Новопсков Первомайск Перевальск Петровское Попасная Приволье Ровеньки Рубежное Сватово Свердловск Северодонецк Старобельск Стаханов Суходольск Счастье Теплогорск Червонопартизанск Белз Бобрка Борислав Броды Буск Великие Мосты Глиняны Городок Добромиль Дрогобыч Дубляны Жидачов Жолква Золочев Каменка-Бугская Львов Мостиска Перемышляны Пустомыты Рава-Русская Радехов Рудки Самбор Сколе Сокаль Старый Самбор Стрый Трускавец Угнев Хыров Червоноград Яворов Баштанка Вознесенск Николаев Новая Одесса Новый Буг Очаков Первомайск Снигирёвка Южноукраинск Ананьев Арциз Балта Белгород-Днестровский Болград Измаил Ильичёвск Килия Кодыма Котовск Одесса Татарбунары Теплодар Южное Гадяч Глобино Гребёнка Зеньков Карловка Кременчуг Кобеляки Комсомольск Лохвица Лубны Миргород Пирятин Полтава Хорол Червонозаводское Березне Дубно Дубровица Здолбунов Корец Костополь Кузнецовск Острог Радивилов Ровно Сарны Ахтырка Белополье Бурынь Глухов Кролевец Конотоп Лебедин Путивль Ромны Середина-Буда Сумы Тростянец Шостка Бережаны Борщёв Бучач Залещики Збараж Зборов Кременец Лановцы Монастыриска Подволочиск Подгайцы Почаев Скалат Тернополь Теребовля Чортков Шумск Балаклея Барвенково Богодухов Валки Великий Бурлук Волчанск Дергачи Змиев Изюм Красноград Купянск Лозовая Люботин Мерефа Первомайский Харьков Чугуев Берислав Геническ Голая Пристань Каховка Новая Каховка Скадовск Таврийск Херсон Цюрупинск Волочиск Городок Деражня Дунаевцы Изяслав Каменец-Подольский Красилов Нетешин Полонное Славута Староконстантинов Хмельницкий Шепетовка Ватутино Городище Жашков Звенигородка Золотоноша Каменка Канев Корсунь-Шевченковский Монастырище Смела Тальное Умань Христиновка Черкассы Чигирин Шпола Бахмач Бобровица Борзна Городня Десна Ичня Корюковка Мена Нежин Новгород-Северский Носовка Прилуки Седнев Семёновка Чернигов Щорс Вашковцы Вижница Герца Заставна Кицмань Новоднестровск Новоселица Сокиряны Сторожинец Хотин'.split(' ')
 autocomplete($('#myInput'), countries)
+
+
+// const { charType } = e.target.dataset;
+// const charType = e.target.dataset.charType;
+// const charType = e.target.dataset['charType'];
