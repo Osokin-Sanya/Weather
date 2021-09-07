@@ -238,38 +238,37 @@ function autocomplete(inp, arr) {
 
     inp.addEventListener('keydown', event => { // зачем брать в объект?
 
-        if (1 == 1) {
-            if (event.keyCode == KEY_DOWN) {
-                if (selectedIndex >= showСitieslength) return;
-                const prevItem = getItem(selectedIndex - 1);
-                prevItem && prevItem.classList.remove(selector);
-                const findedItem = getItem(selectedIndex);
-                findedItem && findedItem.classList.add(selector);
-                selectedIndex++;
-                // inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
 
-                if ($(`.autocomplete-item-hover`)) {
-                    $$('.autocomplete-item')[selectedIndex - 2].classList.remove('autocomplete-item-hover')
+        if (event.keyCode == KEY_DOWN) {
+            if (selectedIndex >= showСitieslength) return;
+            const prevItem = getItem(selectedIndex - 1);
+            prevItem && prevItem.classList.remove(selector);
+            const findedItem = getItem(selectedIndex);
+            findedItem && findedItem.classList.add(selector);
+            selectedIndex++;
+            // inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
 
-                }
-            }
-
-            if (event.keyCode == KEY_UP) {
-                event.preventDefault();
-                if (selectedIndex == 1) return;
-                if (selectedIndex == 0) return;
-                selectedIndex--;
-                const prevItem = getItem(selectedIndex);
-                prevItem && prevItem.classList.remove(selector);
-                const findedItem = getItem(selectedIndex - 1);
-                findedItem && findedItem.classList.add(selector);
-
-                // inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
-
-                $$('.autocomplete-item')[selectedIndex].classList.remove('autocomplete-item-hover')
-
+            if ($(`.autocomplete-item-hover`)) {
+                $$('.autocomplete-item')[selectedIndex - 2].classList.remove('autocomplete-item-hover')
             }
         }
+
+        if (event.keyCode == KEY_UP) {
+            event.preventDefault();
+            if (selectedIndex == 1) return;
+            if (selectedIndex == 0) return;
+            selectedIndex--;
+            const prevItem = getItem(selectedIndex);
+            prevItem && prevItem.classList.remove(selector);
+            const findedItem = getItem(selectedIndex - 1);
+            findedItem && findedItem.classList.add(selector);
+
+            // inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
+
+            $$('.autocomplete-item')[selectedIndex].classList.remove('autocomplete-item-hover')
+
+        }
+
 
         if (event.keyCode == ENTER) {
             inp.value = $$(`.autocomplete-item`)[selectedIndex - 1].textContent
