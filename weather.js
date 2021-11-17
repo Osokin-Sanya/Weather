@@ -30,7 +30,7 @@ function showCurrentTime() {
 }
 showCurrentTime()
 setInterval(showCurrentTime, 1000);
-
+////
 function getCurrentWeatherData(data) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)
         .then(res => res.json()).then(currentData => {
