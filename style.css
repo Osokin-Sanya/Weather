@@ -27,19 +27,12 @@ body {
     height: 100vh;
 }
 
-.container {
-    padding: 20px 250px;
-    color: #fff;
-}
+.container {}
 
 .current-info {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.date-container {
-    font-weight: 100;
 }
 
 .date-container .time {
@@ -88,8 +81,8 @@ body {
     justify-content: center;
     border: 1px solid #eee;
     border-radius: 10px;
-    padding: 15px;
-    padding-right: 40px;
+    /* padding: 15px;
+    padding-right: 40px; */
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.2);
 }
@@ -107,6 +100,15 @@ body {
 
 .future-forecast .weather-forecast {
     display: flex;
+}
+
+.parameters-item-text {
+    margin-right: 35px;
+}
+
+.parametersWR {
+    display: flex;
+    justify-content: center;
 }
 
 .weather-forecast .weather-forecast-item {
@@ -157,16 +159,22 @@ button:hover {
 .zone {
     display: flex;
     justify-content: center;
+    width: 100%;
+    background: rgba(24, 24, 27, 0.7);
 }
 
 .buffer-zone {
     color: white;
-    background: rgba(24, 24, 27, 0.7);
-    width: 100%;
     display: flex;
     justify-content: center;
     display: none;
     height: 251px;
+    background: rgba(24, 24, 27, 0.7);
+    width: 100%;
+}
+
+.weather-container {
+    width: 100%;
 }
 
 .date {
@@ -176,8 +184,16 @@ button:hover {
 }
 
 .parameters {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 169px 1fr;
+}
+
+.parameters::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar {
+    width: 0;
 }
 
 #weather-card {
@@ -355,10 +371,15 @@ button:hover {
     }
 }
 
+#date-current {
+    width: 19vh;
+}
+
 .parameters-wraper {
     display: flex;
-    margin-left: 35px;
     font-family: "STIX Two Math", serif;
+    width: 100%;
+    overflow-x: scroll;
 }
 
 .autocomplete-items .autocomplete-active {
@@ -410,4 +431,37 @@ button:hover {
 .input-pripyat:hover,
 .button-pripyat:hover {
     background: rgb(97 97 121 / 100%);
+}
+
+.date-container {
+    padding: 20px 250px;
+    color: #fff;
+}
+
+#weather-today {
+    padding: 20px 43px;
+}
+
+@media (max-width: 1051px) {
+    .weather-forecast {
+        overflow-x: scroll;
+    }
+    .weather-today {
+        margin-right: 12px;
+    }
+    .date-container {
+        padding: 20px 60px;
+    }
+}
+
+@media (max-width: 575px) {
+    #weather-today {
+        padding: 5px 8px;
+    }
+    .weather-forecast .weather-forecast-item {
+        padding: 5px;
+    }
+    .weather-forecast .weather-forecast-item .day {
+        padding: 2px 12px;
+    }
 }

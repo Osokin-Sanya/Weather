@@ -41,7 +41,7 @@ function getCurrentWeatherData(data) {
         })
         .catch(function(error) {
             if (error) {
-                $('.weather-today').style.padding = '20px 43px';
+                // $('.weather-today').style.padding = '20px 43px';
                 $('.weather-today').innerHTML = `Такого города не существует`
                 if (inputCity.value == 'City-17') {
                     $('.weather-today').innerHTML = `Добро пожаловать Доктор Фримен`
@@ -68,7 +68,7 @@ function getCurrentWeatherData(data) {
 function getWeatherForecast() {
     $('.buffer-zone').style.display = 'none'
     $('.current-wrapper').style.display = 'none'
-    $('.weather-today').style.padding = '20px 43px';
+        // $('.weather-today').style.padding = '20px 43px';
     $('.weather-today').innerHTML = `<div class="loader"></div>`
     weatherForecast.innerHTML = ''
 
