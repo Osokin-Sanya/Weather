@@ -13,8 +13,7 @@ inputCity.addEventListener('click', () => {
 
 const apiKey = 'a174f834c69eee3b72537c60e7312512';
 const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
-// const daysArr = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
-// const daysArr = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+const daysArr = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
 const monthsArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
 function showCurrentTime() {
@@ -31,7 +30,9 @@ function showCurrentTime() {
 }
 showCurrentTime()
 setInterval(showCurrentTime, 1000);
-////
+
+
+
 function getCurrentWeatherData(data) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputCity.value}&lang=ru&units=metric&appid=${apiKey}`)
         .then(res => res.json()).then(currentData => {
@@ -40,7 +41,7 @@ function getCurrentWeatherData(data) {
         })
         .catch(function(error) {
             if (error) {
-                // $('.weather-today').style.padding = '20px 43px';
+                $('.weather-today').style.padding = '20px 43px';
                 $('.weather-today').innerHTML = `Такого города не существует`
                 if (inputCity.value == 'City-17') {
                     $('.weather-today').innerHTML = `Добро пожаловать Доктор Фримен`
@@ -67,7 +68,7 @@ function getCurrentWeatherData(data) {
 function getWeatherForecast() {
     $('.buffer-zone').style.display = 'none'
     $('.current-wrapper').style.display = 'none'
-        // $('.weather-today').style.padding = '20px 43px';
+    $('.weather-today').style.padding = '20px 43px';
     $('.weather-today').innerHTML = `<div class="loader"></div>`
     weatherForecast.innerHTML = ''
 
@@ -235,7 +236,9 @@ function autocomplete(inp, arr) {
 
 
 
-    inp.addEventListener('keydown', event => {
+    inp.addEventListener('keydown', event => { // зачем брать в объект?
+
+
         if (event.keyCode == KEY_DOWN) {
             if (selectedIndex >= showСitieslength) return;
             const prevItem = getItem(selectedIndex - 1);
