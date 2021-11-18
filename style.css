@@ -480,7 +480,7 @@ button:hover {
     }
     .weather-forecast {
         overflow-x: scroll;
-        margin: -9px 0 -15px 0px;
+        /* margin: -9px 0 -15px 0px; */
     }
     .icon {
         width: 70px;
