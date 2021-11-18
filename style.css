@@ -450,18 +450,42 @@ button:hover {
         margin-right: 12px;
     }
     .date-container {
-        padding: 20px 60px;
+        padding: 7px 60px;
+    }
+    .weather-forecast .weather-forecast-item {
+        padding: 2px 0px;
     }
 }
 
 @media (max-width: 575px) {
     #weather-today {
         padding: 5px 8px;
+        font-size: 13px;
     }
     .weather-forecast .weather-forecast-item {
         padding: 5px;
+        margin: 11px -2px 0px 10px;
+    }
+    .weather-forecast .weather-forecast-item img {
+        width: 70px;
+    }
+    .weather-forecast .weather-forecast-item:first-child {
+        margin: 11px -2px 0px 1px;
     }
     .weather-forecast .weather-forecast-item .day {
         padding: 2px 12px;
+    }
+    .date-container {
+        padding: 0 0 1px 16px;
+    }
+    .weather-forecast {
+        overflow-x: scroll;
+        margin: -9px 0 -15px 0px;
+    }
+    .icon {
+        width: 70px;
+    }
+    .weather-today {
+        /* margin-right: 0; */
     }
 }

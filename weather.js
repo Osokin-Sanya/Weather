@@ -14,6 +14,7 @@ inputCity.addEventListener('click', () => {
 const apiKey = 'a174f834c69eee3b72537c60e7312512';
 const apiKeyGoogle = 'AIzaSyA9cDBy-G8_-k4u21Rc35MekdOhwbtUmxE';
 const daysArr = ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'];
+// const daysArr = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 const monthsArr = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
 function showCurrentTime() {
@@ -234,9 +235,7 @@ function autocomplete(inp, arr) {
 
 
 
-    inp.addEventListener('keydown', event => { // зачем брать в объект?
-
-
+    inp.addEventListener('keydown', event => {
         if (event.keyCode == KEY_DOWN) {
             if (selectedIndex >= showСitieslength) return;
             const prevItem = getItem(selectedIndex - 1);
