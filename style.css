@@ -380,6 +380,7 @@ button:hover {
     font-family: "STIX Two Math", serif;
     width: 100%;
     overflow-x: scroll;
+    /* margin-top: 18px; */
 }
 
 .autocomplete-items .autocomplete-active {
