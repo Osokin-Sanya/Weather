@@ -87,6 +87,7 @@ body {
   width: 143px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .future-forecast .weather-today .day {
@@ -124,6 +125,7 @@ body {
   padding: 4px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .weather-forecast .weather-forecast-item .day {
@@ -191,6 +193,7 @@ button:hover {
   display: grid;
   grid-template-columns: 140px 1fr;
   max-width: 1000px;
+  padding: 0px 12px;
 }
 
 .parameters::-webkit-scrollbar {
